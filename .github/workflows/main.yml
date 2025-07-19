@@ -1,4 +1,4 @@
-name: CI/CD Pipeline for Todo API
+name: CI/CD Pipeline for Todo API project
 
 on:
   push:
