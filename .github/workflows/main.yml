@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      IMAGE_NAME: rawanaglan36/todo-api
+      IMAGE_NAME: rawan36/todo-api
 
     steps:
       - name: ⬇️ Checkout code
