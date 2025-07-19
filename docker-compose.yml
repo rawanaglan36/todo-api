@@ -1,0 +1,35 @@
+# 📄 docker-compose.yml
+version: '3.9'
+
+services:
+  backend:
+    build: .
+    container_name: todo-api
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URL=mongodb://mongo:27017
+      - PORT=3000
+    networks:
+      - todo-net
+
+  mongo:
+    image: mongo:5
+    container_name: todo-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - todo-net
+
+volumes:
+  mongo-data:
+
+networks:
+  todo-net:
