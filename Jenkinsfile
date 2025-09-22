@@ -1,6 +1,6 @@
 pipeline{
     agent any 
-    envirnoment{
+    environment{
         DOCKER_IMAGE = 'rawan36/todo-api'
     }
     stages{
