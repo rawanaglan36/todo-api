@@ -1,11 +1,41 @@
 pipeline{
     agent any 
+    envirnoment{
+        DOCKER_IMAGE = 'rawan36/todo-api'
+    }
     stages{
-        stage('build'){
+        stage('checkout'){
             steps{
-                echo 'Building..'
+              checkout scm
+
             }
 
+        }
+        stage('install dependencies'){
+            steps{
+                sh 'npm install'                
+            }
+
+        }
+        stage('build docker image'){
+            steps{
+                sh """
+                   docker build -t ${DOCKER_IMAGE} . 
+                   docker tage ${DOCKER_IMAGE} ${DOCKER_IMAGE}:latest
+                   """
+            }
+
+        }
+        stage('push image to DockerHub'){
+            steps{
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]){
+                    sh """
+                       echo \$DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+                       docker push ${DOCKER_IMAGE}:latest
+                       docker logout
+                       """
+                }
+            }
         }
     }
 }
