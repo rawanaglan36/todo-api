@@ -3,6 +3,9 @@ pipeline{
     environment{
         DOCKER_IMAGE = 'rawan36/todo-api'
     }
+    triggers {
+        githubPush()
+    }
     stages{
         stage('checkout'){
             steps{
