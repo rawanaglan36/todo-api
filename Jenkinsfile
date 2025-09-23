@@ -18,8 +18,8 @@ pipeline{
         stage('build docker image'){
             steps{
                 sh """
-                   docker build -t ${DOCKER_IMAGE} . 
-                   docker tag ${DOCKER_IMAGE} ${DOCKER_IMAGE}:lts
+                   docker build -t ${DOCKER_IMAGE}:lts . 
+                  
                    """
             }
 
