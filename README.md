@@ -16,8 +16,8 @@ Docker
 Docker Compose
 
  CI/CD
-This project includes GitHub Actions workflows for:
+This project includes GitHub Actions and Jenkins pipeline workflows for:
 Building Docker images
 Running tests (if added)
 Deploying the app
-
+ 
