@@ -2,19 +2,7 @@
 - name: Install Apache on web server 
   hosts: web    # which groub or server want to run on 
   become: yes   # Run tasks with sudo/root rivilages 
-  tasks: 
-    - name: Install apache httpd 
-      apt:
-        name: apache2
-        state: present 
-
-    - name: start apache service 
-      service:
-        name: apache2
-        state: started
-        enabled: yes
-
-    - name: Remove Apache httpd
-      apt:
-        name: apache2
-        state: absent
+  
+  roles:
+    - web-server 
+  
